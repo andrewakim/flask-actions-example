@@ -1,10 +1,3 @@
-from flask import Flask
+from application import create_app
 
-app = Flask(__name__)
-
-@app.route("/")
-def main() -> str:
-  return("<p>Hello, World!</p>")
-
-if __name__ == '__main__':
-  pass
+app = create_app('flask.cfg')

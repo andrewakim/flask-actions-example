@@ -2,7 +2,9 @@ FROM python:3.7-slim-buster
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
-    PYTHONUNBUFFERED=0
+    PYTHONUNBUFFERED=0 \
+    FLASK_APP=app.py \
+    FLASK_ENV=development
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash \
