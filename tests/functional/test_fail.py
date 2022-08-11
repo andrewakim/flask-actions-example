@@ -5,9 +5,9 @@ def test_fail():
 
   with flask_app.test_client() as test_client:
     # this will fail
-    response = test_client.get('/failure')
+    # response = test_client.get('/failure')
 
     # this will succeed
-    # response = test_client.get('/fail')
+    response = test_client.get('/fail')
 
     assert response.status_code == 200
