@@ -7,6 +7,9 @@ on:
   #   branches: [ master ]
   workflow_dispatch:
 
+env:
+  GITHUB_STEP_SUMMARY: /code/summary.md
+
 jobs:
   pytest:
     name: Test Code
@@ -30,6 +33,7 @@ jobs:
       - name: Run PyTests
         id: run-tests
         run: |
-          pytest
+          pytest --junitxml=/code/summary.xml
+          python ./utils/junitxml2md.py
           echo '### Test Summary' >> $GITHUB_STEP_SUMMARY
 
