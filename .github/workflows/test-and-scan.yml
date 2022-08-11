@@ -29,3 +29,17 @@ jobs:
 
       - name: Run PyTests
         run: pytest
+
+      # Trying Ed's test summary workflow
+      - name: Create Test Summary
+        uses: ./bin
+        with:
+          paths: test/results/*.xml
+          output: test/results/results.html
+
+      - name: Upload Test Summary
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-summary
+          path: test/results/results.html
+
