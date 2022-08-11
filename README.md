@@ -1,6 +1,6 @@
 # Flask + Actions Example
 
-![example](https://github.com/andrewakim/flask-actions-example/actions/workflows/test-and-scan.yml/badge.svg)
+![example](https://github.com/andrewakim/flask-actions-example/actions/workflows/test-and-scan.yml/badge.svg?branch=master)
 
 This is an example of how to build a simple Flask application using GitHub Actions.
 
