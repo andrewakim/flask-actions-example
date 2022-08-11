@@ -28,20 +28,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run PyTests
-        run: pytest
-
-      # Trying Ed's test summary workflow
-      - name: Create Test Summary
-        if: always() # So the test summary creates even if the test fails
-        uses: ./bin
-        with:
-          paths: test/results/*.xml
-          output: test/results/results.html
-
-      - name: Upload Test Summary
-        if: always() # So the test summary creates even if the test fails
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-summary
-          path: test/results/results.html
+        id: run-tests
+        run: |
+          pytest
+          echo '### Test Summary' >> $GITHUB_STEP_SUMMARY
 
