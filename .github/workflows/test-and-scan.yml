@@ -9,6 +9,7 @@ on:
 
 jobs:
   pytest:
+    if: always() # So the test summary creates even if the test fails
     name: Test Code
     runs-on: ubuntu-latest
     strategy:
