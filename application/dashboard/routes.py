@@ -8,6 +8,10 @@ def index():
   return render_template('index.html')
 
 
-@dashboard_blueprint.route('/sad')
+@dashboard_blueprint.route('/unknown')
 def unknown():
   return render_template('404.html')
+
+@dashboard_blueprint.route('/fail')
+def fail():
+  return("<p>Task failed successfully</p>")
