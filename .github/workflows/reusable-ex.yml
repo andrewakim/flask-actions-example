@@ -1,0 +1,23 @@
+name: Reusable nested
+
+on:
+  workflow_call: # This is requested for defining a reusable workflow
+
+jobs:
+  nested:
+    name: Nested Workflow
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo From Nested
+        run: echo 'Hello, From Nested'
+      - name: Dump github context
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
