@@ -5,7 +5,7 @@ on:
 
 jobs:
   nested:
-    name: Nested Workflow
+    name: Nested Layer 2
     runs-on: ubuntu-latest
 
     steps:
