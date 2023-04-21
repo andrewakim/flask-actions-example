@@ -33,7 +33,7 @@ jobs:
       - name: Run PyTests
         id: run-tests
         run: |
-          echo "Hello, world!"
+          echo "::warning file=somefile.txt,line=1::Some warning"
 
   artifact-job:
     name: Job that uploads an artifact
