@@ -33,7 +33,18 @@ jobs:
       - name: Run PyTests
         id: run-tests
         run: |
-          pytest --junitxml=/code/summary.xml
-          python ./utils/junitxml2md.py
-          echo '### Test Summary' >> $GITHUB_STEP_SUMMARY
+          echo "Hello, world!"
+
+  artifact-job:
+    name: Job that uploads an artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Debug2
+        run: echo '${{ toJSON(github) }}' > context.json
+      - name: Archive context artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: context-artifact
+          path: context.json
+          retention-days: 7
 
