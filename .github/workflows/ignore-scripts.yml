@@ -1,0 +1,14 @@
+name: Ignore Scripts
+
+on:
+  pull_request:
+    paths-ignore:
+      - 'scripts/**'
+
+jobs:
+  paths-ignore-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo bash
+        run: |
+          echo "Do some stuff if anything outside of scripts is changed."
