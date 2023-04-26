@@ -1,0 +1,14 @@
+name: Force Success
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/**'
+
+jobs:
+  paths-ignore-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo bash
+        run: |
+          echo "This should be successful."
