@@ -1,0 +1,55 @@
+name: Build-Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build something
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        my-envs: ["env1", "env2", "env3"]
+
+    steps:
+      - name: Setting env state
+        run: |
+          echo "True" > file-${{ matrix.my-envs }}.txt
+
+      - name: Upload env state
+        uses: actions/upload-artifact@v4
+        with:
+          name: env-state-${{ matrix.my-envs }}
+          path: file-${{ matrix.my-envs }}.txt
+
+  merge-job:
+    name: Job that merges artifacts
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Merge artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: all-envs
+          pattern: env-state-*
+
+  download-and-output:
+    name: Download and output artifacts
+    runs-on: ubuntu-latest
+    needs: merge-job
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: my-artifacts
+          merge-multiple: true
+
+      - name: Output summary
+        run: |
+          for filen in my-artifacts/*; do
+            if [ -f "$filen" ]; then
+              echo "File: $filen"
+              cat $filen
+            fi
+          done
+
