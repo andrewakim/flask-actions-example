@@ -1,0 +1,42 @@
+name: Test streaming logs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  stream-to-succeed:
+    name: Stream and suceed
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Printing lines and sleeping
+        run: |
+          for i in {1..45}
+            do
+              echo "$i"
+              sleep 1
+          done
+
+
+  stream-to-fail:
+    name: Stream and fail
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start success
+        run: |
+          echo "Hello!"
+
+      - name: Printing lines and failing
+        run: |
+          for i in {1..30}; do
+            echo "$i"
+            if [ $i -eq 20 ]; then
+              echo "Failing"
+              cat nofile
+            fi
+              sleep 1
+          done
+
+      - name: End success
+        run: |
+            echo "World!"
