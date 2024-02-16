@@ -5,13 +5,13 @@ on:
 
 jobs:
   stream-to-succeed:
-    name: Stream and suceed
+    name: Stream and succeed
     runs-on: ubuntu-latest
 
     steps:
       - name: Printing lines and sleeping
         run: |
-          for i in {1..45}
+          for i in {1..30}
             do
               echo "$i"
               sleep 1
@@ -21,6 +21,7 @@ jobs:
   stream-to-fail:
     name: Stream and fail
     runs-on: ubuntu-latest
+    needs: stream-to-succeed
     steps:
       - name: Start success
         run: |
