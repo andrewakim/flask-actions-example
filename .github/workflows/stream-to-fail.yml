@@ -29,9 +29,9 @@ jobs:
 
       - name: Printing lines and failing
         run: |
-          for i in {1..2200}; do
+          for i in {1..1200}; do
             echo "$i"
-            if [ $i -eq 2000 ]; then
+            if [ $i -eq 1000 ]; then
               echo "Failing"
               cat nofile
             fi
